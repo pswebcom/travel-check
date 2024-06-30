@@ -24,20 +24,21 @@ function Logo() {
 
 function Form() {
   return (
-    <div className="add-form">
-      <h3>What do you need for your trip</h3>
-    </div>
-  );
-}
+    <form className="add-form">
+      <h3>What do you need for your trip 😊</h3>
+      <select>
+        {"//FIXME: with _ i will return the current index of array below"}
+        {"//TODO: without _ i will return the current value of array below"}
 
-function Item({ item }) {
-  return (
-    <li>
-      <span style={item.packed ? { textDecoration: "line-through" } : {}}>
-        {item.quantity} {item.description}
-      </span>
-      <button>❌</button>
-    </li>
+        {Array.from([7, 8, 9, 1, 1, 1], (_, i) => i).map((num) => (
+          <option value={num} key={num}>
+            {num}
+          </option>
+        ))}
+      </select>
+      <input type="text" placeholder="item..." />
+      <button>Add</button>
+    </form>
   );
 }
 
@@ -50,6 +51,17 @@ function PackingList() {
         ))}
       </ul>
     </div>
+  );
+}
+
+function Item({ item }) {
+  return (
+    <li>
+      <span style={item.packed ? { textDecoration: "line-through" } : {}}>
+        {item.quantity} {item.description}
+      </span>
+      <button>❌</button>
+    </li>
   );
 }
 
