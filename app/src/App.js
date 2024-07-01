@@ -22,12 +22,11 @@ function Logo() {
 }
 
 function Form() {
-  //todo:**So in React,for FORMS we usually like to keep all this state in just one central place.So inside the React application and not inside the DOM.And so in order to do that we use a technique called controlled elements.And so with this technique it is React who controls and owns the state of these input fields and no longer the DOM.So since we want to now keep this data,inside the application, what that means is that we need some state, right? Because that form data of course changes over time and we also want to maintain our application.
-
-  //todo **so there are 3 steps
+  //todo:**controlled elements
 
   //todo:** step 1-- create state
   const [description, setDescription] = useState("");
+  const [quantity, setQuantity] = useState(0);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -36,7 +35,7 @@ function Form() {
   return (
     <form className="add-form" onSubmit={(e) => handleSubmit(e)}>
       <h3>What do you need for your trip 😊</h3>
-      <select>
+      <select value={quantity} onChange={(e) => setQuantity(e.target.value)}>
         {"//FIXME: we need 1 to 20 drop down"}
 
         {Array.from({ length: 20 }, (_, i) => i).map((num) => (
