@@ -45,14 +45,14 @@ function Form() {
           </option>
         ))}
       </select>
-      //todo:*** step 2--use state as a value of input ie value={description}
-      //todo:*** step 3--connect setDescription state func with user onChange
+      {/* // todo *** step 2--use state as a value of input ie value={description} */}
+      {/* // todo *** step 3--connect setDescription state func with user onChange */}
       event
       <input
         type="text"
         placeholder="item..."
         value={description}
-        onChange={(e) => setDescription}
+        onChange={(e) => setDescription(e.target.value)}
       />
       <button>Add</button>
     </form>
