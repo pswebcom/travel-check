@@ -27,10 +27,9 @@ function Form() {
     <form className="add-form">
       <h3>What do you need for your trip 😊</h3>
       <select>
-        {"//FIXME: with _ i will return the current index of array below"}
-        {"//TODO: without _ i will return the current value of array below"}
+        {"//FIXME: we need 1 to 20 drop down"}
 
-        {Array.from([7, 8, 9, 1, 1, 1], (_, i) => i).map((num) => (
+        {Array.from({ length: 20 }, (_, i) => i).map((num) => (
           <option value={num} key={num}>
             {num}
           </option>
