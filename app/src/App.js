@@ -23,8 +23,13 @@ function Logo() {
 }
 
 function Form() {
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+
   return (
-    <form className="add-form">
+    //todo:when clicked onSubmit gets event object which it passes to handleSubmit
+    <form className="add-form" onSubmit={(e) => handleSubmit(e)}>
       <h3>What do you need for your trip 😊</h3>
       <select>
         {"//FIXME: we need 1 to 20 drop down"}
