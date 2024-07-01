@@ -35,7 +35,10 @@ function Form() {
   return (
     <form className="add-form" onSubmit={(e) => handleSubmit(e)}>
       <h3>What do you need for your trip 😊</h3>
-      <select value={quantity} onChange={(e) => setQuantity(e.target.value)}>
+      <select
+        value={quantity}
+        onChange={(e) => setQuantity(Number(e.target.value))}
+      >
         {"//FIXME: we need 1 to 20 drop down"}
 
         {Array.from({ length: 20 }, (_, i) => i).map((num) => (
