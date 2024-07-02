@@ -7,11 +7,22 @@ const initialItems = [
 ];
 
 export default function App() {
+  const [items, setItems] = useState(initialItems);
+
+  function handleAddItems(item) {
+    setItems((items) => [...items, item]);
+  }
+
+  function handleDeleteItem(id) {
+    console.log(id);
+    setItems((items) => items.filter((item) => item.id !== id));
+  }
+
   return (
     <div className="App">
       <Logo />
-      <Form />
-      <PackingList />
+      <Form onAddItems={handleAddItems} />
+      <PackingList items={items} onDeleteItem={handleDeleteItem} />
       <Stats />
     </div>
   );
@@ -21,10 +32,7 @@ function Logo() {
   return <h1>🌴 Far away</h1>;
 }
 
-function Form() {
-  //todo:**controlled elements
-
-  //todo:** step 1-- create state
+function Form({ onAddItems }) {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
 
@@ -34,6 +42,8 @@ function Form() {
     if (!description) return;
 
     const newItem = { description, quantity, packed: false, id: Date.now() };
+
+    onAddItems(newItem);
     setDescription("");
     setQuantity(1);
   }
@@ -67,25 +77,25 @@ function Form() {
   );
 }
 
-function PackingList() {
+function PackingList({ items, onDeleteItem }) {
   return (
     <div className="list">
       <ul>
-        {initialItems.map((item) => (
-          <Item key={item.quantity} item={item} />
+        {items.map((item) => (
+          <Item key={item.quantity} onDeleteItem={onDeleteItem} item={item} />
         ))}
       </ul>
     </div>
   );
 }
 
-function Item({ item }) {
+function Item({ item, onDeleteItem }) {
   return (
     <li>
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
         {item.quantity} {item.description}
       </span>
-      <button>❌</button>
+      <button onClick={() => onDeleteItem(item.id)}>❌</button>
     </li>
   );
 }
